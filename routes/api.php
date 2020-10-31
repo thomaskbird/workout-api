@@ -31,6 +31,6 @@ route::post('login', [AuthenticationController::class, 'action_login']);
 //route::post('forgot-password', [AuthenticationController::class, 'action_forgot_password']);
 //route::post('reset-password/{reset_token}', [AuthenticationController::class, 'action_reset_password']);
 
-route::middleware([])->group(function() {
+//route::middleware([])->group(function() {
     route::post('exercise/add', [ExerciseController::class, 'add']);
-});
+//});
