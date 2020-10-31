@@ -50,7 +50,7 @@ class ExerciseController extends Controller {
     }
 
     public function exercise_single($id) {
-        $exercise = Exercise::find($id);
+        $exercise = Exercise::with(['steps'])->where('id', $id)->get();
 
         return response(json_encode([
             'status' => true,
