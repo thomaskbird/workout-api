@@ -1,7 +1,7 @@
 <?php namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use Closure;
+use Illuminate\Http\Request;
 
 use App\Models\User;
 
@@ -14,7 +14,7 @@ class UserToken
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle(Request $request, Closure $next) {
         $token = $request->bearerToken();
 
         if($token) {

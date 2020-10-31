@@ -2,7 +2,6 @@
 
 date_default_timezone_set('America/Detroit');
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\UserToken;
