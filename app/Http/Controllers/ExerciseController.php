@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Exercise;
 
 class ExerciseController extends Controller {
-    public function add(Request $request) {
+    public function exercise_add(Request $request) {
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -35,5 +35,17 @@ class ExerciseController extends Controller {
                 ]
             ]));
         }
+    }
+
+    public function exercise_list(Request $request) {
+        $user_id = $this->getUserIdFromToken($request->bearerToken());
+        $exercises = Exercise::where('user_id', $user_id)->get();
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'exercises' => $exercises
+            ]
+        ]));
     }
 }
