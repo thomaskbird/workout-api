@@ -1,7 +1,11 @@
 <?php
 
+date_default_timezone_set('America/Detroit');
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+route::post('login', [AuthenticationController::class, 'action_login']);
+//route::post('signup', [AuthenticationController::class, 'action_signup']);
+//route::post('activate/{activation_code}', [AuthenticationController::class, 'account_user_activate']);
+//route::post('forgot-password', [AuthenticationController::class, 'action_forgot_password']);
+//route::post('reset-password/{reset_token}', [AuthenticationController::class, 'action_reset_password']);
