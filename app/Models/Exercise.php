@@ -14,7 +14,7 @@ class Exercise extends Model {
     }
 
     public function steps() {
-        return $this->hasMany('App\Http\Models\ExerciseStep');
+        return $this->hasMany('App\Models\ExerciseStep');
     }
 
 //    public function budgets() {
