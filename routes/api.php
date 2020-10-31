@@ -8,6 +8,7 @@ use App\Http\Middleware\UserToken;
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\ExerciseStepController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,6 @@ route::middleware(['apiToken'])->group(function() {
     route::post('exercise/add', [ExerciseController::class, 'exercise_add']);
     route::get('exercises', [ExerciseController::class, 'exercise_list']);
     route::get('exercises/{id}', [ExerciseController::class, 'exercise_single']);
+
+    route::post('exercise/step/add', [ExerciseStepController::class, 'exercise_step_add']);
 });
