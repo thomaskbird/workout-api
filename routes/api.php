@@ -38,4 +38,6 @@ route::middleware(['apiToken'])->group(function() {
     route::get('exercises/{id}', [ExerciseController::class, 'exercise_single']);
 
     route::post('exercise/step/add', [ExerciseStepController::class, 'exercise_step_add']);
+
+    route::post('workout/add', [WorkoutController::class, 'workout_add']);
 });
