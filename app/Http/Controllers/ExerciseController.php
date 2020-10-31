@@ -3,7 +3,7 @@
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Exercise;
 
@@ -11,16 +11,16 @@ class ExerciseController extends Controller {
     public function add(Request $request) {
         $input = $request->all();
 
-//        $validator = Validator::make($input, [
-//            'title' => 'required',
-//        ]);
-//
-//        if($validator->fails()) {
-//            return response(json_encode([
-//                'status' => false,
-//                'errors' => $validator->errors()
-//            ]));
-//        } else {
+        $validator = Validator::make($input, [
+            'title' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return response(json_encode([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]));
+        } else {
             $user_id = $this->getUserIdFromToken($request->bearerToken());
 
             $input['slug'] = $this->create_slug($input['title']);
@@ -34,6 +34,6 @@ class ExerciseController extends Controller {
                     'exercise' => $exercise
                 ]
             ]));
-//        }
+        }
     }
 }
