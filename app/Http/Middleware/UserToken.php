@@ -1,5 +1,6 @@
 <?php namespace App\Http\Middleware;
 
+use Illuminate\Http\Request;
 use Closure;
 
 use App\Models\User;
