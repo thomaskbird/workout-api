@@ -10,8 +10,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-
-
 class AuthenticationController extends Controller {
     /**
      * This action logs a user into the system, it generates an auth token
