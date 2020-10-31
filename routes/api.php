@@ -4,7 +4,7 @@ date_default_timezone_set('America/Detroit');
 
 use Illuminate\Support\Facades\Route;
 
-// use App\Http\Middleware\UserToken;
+use App\Http\Middleware\UserToken;
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ExerciseController;
@@ -31,6 +31,6 @@ route::post('login', [AuthenticationController::class, 'action_login']);
 //route::post('forgot-password', [AuthenticationController::class, 'action_forgot_password']);
 //route::post('reset-password/{reset_token}', [AuthenticationController::class, 'action_reset_password']);
 
-// route::middleware(['apiToken'])->group(function() {
+route::middleware(['apiToken'])->group(function() {
     route::post('exercise/add', [ExerciseController::class, 'add']);
-// });
+});
