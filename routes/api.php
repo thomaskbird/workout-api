@@ -4,7 +4,7 @@ date_default_timezone_set('America/Detroit');
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Middleware\UserToken;
+// use App\Http\Middleware\UserToken;
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ExerciseController;
