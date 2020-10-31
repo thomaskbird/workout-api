@@ -48,4 +48,15 @@ class ExerciseController extends Controller {
             ]
         ]));
     }
+
+    public function exercise_single($id) {
+        $exercise = Exercise::find($id);
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'exercise' => $exercise
+            ]
+        ]));
+    }
 }
