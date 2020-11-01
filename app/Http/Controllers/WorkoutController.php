@@ -46,4 +46,16 @@ class WorkoutController extends Controller {
             ]
         ]));
     }
+
+    public function workout_list(Request $request) {
+        $user_id = $this->getUserIdFromToken($request->bearerToken());
+        $workouts = Workout::where('user_id', $user_id)->get();
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'workouts' => $workouts
+            ]
+        ]));
+    }
 }
