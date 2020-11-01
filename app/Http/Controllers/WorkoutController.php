@@ -35,4 +35,15 @@ class WorkoutController extends Controller {
             ]));
         }
     }
+
+    public function workout_single($id) {
+        $workout = Workout::with(['exercises'])->where('id', $id)->first();
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'workout' => $workout
+            ]
+        ]));
+    }
 }

@@ -13,6 +13,10 @@ class Workout extends Model {
         return $this->morphTo();
     }
 
+    public function exercises() {
+        return $this->hasMany('App\Http\Models\Exercise');
+    }
+
 //    public function budgets() {
 //        return $this->morphedByMany('App\Http\Models\Budget', 'taggable');
 //    }
