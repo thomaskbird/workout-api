@@ -21,10 +21,8 @@ class WorkoutController extends Controller {
                 'errors' => $validator->errors()
             ]));
         } else {
-            $user_id = $this->getUserIdFromToken($request->bearerToken());
-
             $input['slug'] = $this->create_slug($input['title']);
-            $input['user_id'] = $user_id;
+            $input['user_id'] = $this->getUserIdFromToken($request->bearerToken());
 
             $workout = Workout::create($input);
 

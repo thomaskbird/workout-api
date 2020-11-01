@@ -9,6 +9,7 @@ use App\Http\Middleware\UserToken;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseStepController;
+use App\Http\Controllers\WorkoutController;
 
 /*
 |--------------------------------------------------------------------------
