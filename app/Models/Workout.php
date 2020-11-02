@@ -14,7 +14,7 @@ class Workout extends Model {
     }
 
     public function exercises() {
-        return $this->belongsToMany('App\Models\Exercise');
+        return $this->belongsToMany('App\Models\Exercise')->withPivot('reps', 'duration');
     }
 
 //    public function budgets() {
