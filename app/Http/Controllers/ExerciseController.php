@@ -11,7 +11,7 @@ class ExerciseController extends Controller {
     public function exercise_add(Request $request) {
         $input = $request->all();
         $file = $request->file('image');
-        $filename = $this->create_slug($file->getClientOriginalName()) . $file->extension();
+        $filename = $this->create_slug($file->getClientOriginalName()) .'.'. $file->extension();
         $fully_qualified_path = public_path() .'/img/exercises';
         $file->move($fully_qualified_path, $filename);
 
