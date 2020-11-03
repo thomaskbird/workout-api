@@ -10,6 +10,10 @@ use App\Models\Exercise;
 class ExerciseController extends Controller {
     public function exercise_add(Request $request) {
         $input = $request->all();
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $fully_qualified_path = storage_path('exercise_images');
+        $file->move($fully_qualified_path, $filename);
 
         $validator = Validator::make($input, [
             'title' => 'required',
@@ -25,6 +29,7 @@ class ExerciseController extends Controller {
 
             $input['slug'] = $this->create_slug($input['title']);
             $input['user_id'] = $user_id;
+            $input['image'] = $filename;
 
             $exercise = Exercise::create($input);
 
