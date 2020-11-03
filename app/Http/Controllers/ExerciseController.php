@@ -43,6 +43,28 @@ class ExerciseController extends Controller {
         }
     }
 
+    public function exercise_upload(Request $request) {
+        // get necessary info
+        $input = $request->all();
+        $file = $request->file('image');
+        $filename = $this->cleanFilename($file->getClientOriginalName());
+        // upload file
+        $fully_qualified_path = public_path() .'/img/exercises';
+        $file->move($fully_qualified_path, $filename);
+
+        // find the exercise and update
+        $exercise = Exercise::find($input->id);
+        $exercise->image = $filename;
+        $exercise->save();
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'exercise' => $exercise
+            ]
+        ]));
+    }
+
     public function exercise_list(Request $request) {
         $user_id = $this->getUserIdFromToken($request->bearerToken());
         $exercises = Exercise::where('user_id', $user_id)->get();

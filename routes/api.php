@@ -36,6 +36,7 @@ route::post('login', [AuthenticationController::class, 'action_login']);
 
 route::middleware(['apiToken'])->group(function() {
     route::post('exercise/add', [ExerciseController::class, 'exercise_add']);
+    route::post('exercise/upload', [ExerciseController::class, 'exercise_upload']);
     route::get('exercises', [ExerciseController::class, 'exercise_list']);
     route::get('exercises/{id}', [ExerciseController::class, 'exercise_single']);
 
