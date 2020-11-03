@@ -32,4 +32,13 @@ class WorkoutExerciseController extends Controller {
             ]));
         }
     }
+
+    public function remove($id) {
+        $workout_exercise_removed = WorkoutExercise::find($id);
+        $workout_exercise_removed->delete();
+
+        return response(json_encode([
+            'status' => true,
+        ]));
+    }
 }
