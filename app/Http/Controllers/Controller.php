@@ -20,4 +20,8 @@ class Controller extends BaseController
     public function create_slug($str, $splitter = '-') {
         return Str::slug($str, $splitter);
     }
+
+    public function cleanFilename($filename) {
+        return preg_replace("([^\w\s\d\.\-_~,;:\[\]\(\)]|[\.]{2,})", '', $filename);
+    }
 }
