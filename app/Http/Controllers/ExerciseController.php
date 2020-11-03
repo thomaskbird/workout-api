@@ -12,7 +12,7 @@ class ExerciseController extends Controller {
         $input = $request->all();
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $fully_qualified_path = storage_path('exercise_images');
+        $fully_qualified_path = public_path() .'/img/exercises';
         $file->move($fully_qualified_path, $filename);
 
         $validator = Validator::make($input, [
