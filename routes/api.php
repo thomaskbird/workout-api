@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseStepController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\WorkoutExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,6 @@ route::middleware(['apiToken'])->group(function() {
     route::post('workout/add', [WorkoutController::class, 'workout_add']);
     route::get('workouts', [WorkoutController::class, 'workout_list']);
     route::get('workouts/{id}', [WorkoutController::class, 'workout_single']);
+
+    route::post('workouts/exercises/add', [WorkoutExerciseController::class, 'add']);
 });
