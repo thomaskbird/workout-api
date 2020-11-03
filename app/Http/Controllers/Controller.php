@@ -21,7 +21,9 @@ class Controller extends BaseController
         return Str::slug($str, $splitter);
     }
 
-    public function cleanFilename($filename) {
-        return preg_replace("([^\w\s\d\.\-_~,;:\[\]\(\)]|[\.]{2,})", '', $filename);
+    public function cleanFilename($filename, $splitter = '-') {
+//        return preg_replace("([^\w\s\d\.\-_~,;:\[\]\(\)]|[\.]{2,})", '', $filename);
+
+        return preg_replace("/[^a-z0-9\_\-\.]/i", $splitter, $filename);
     }
 }
