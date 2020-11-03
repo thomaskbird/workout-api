@@ -12,6 +12,15 @@ class ExerciseController extends Controller {
         $input = $request->all();
         $file = $request->file('image');
         $filename = $this->create_slug($file->getClientOriginalName());
+
+        return response(json_encode([
+            'status' => true,
+            'data' => [
+                'rawFilename' => $file->getClientOriginalName(),
+                'cleanedFilename' => $filename
+            ]
+        ]));
+
         $fully_qualified_path = public_path() .'/img/exercises';
         $file->move($fully_qualified_path, $filename .'.'. $file->extension());
 
