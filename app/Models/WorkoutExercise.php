@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class WorkoutExercise extends Model {
+    protected $table = 'exercise_workout';
+
     protected $fillable = [
         'user_id', 'workout_id', 'exercise_id', 'reps', 'duration'
     ];
