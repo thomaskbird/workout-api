@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model {
     protected $fillable = [
-        'user_id', 'title', 'slug', 'description', 'image'
+        'user_id', 'title', 'slug', 'description', 'image', 'imageJson'
     ];
 
     public function taggable() {
