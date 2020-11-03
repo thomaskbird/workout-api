@@ -53,7 +53,7 @@ class ExerciseController extends Controller {
         $file->move($fully_qualified_path, $filename);
 
         // find the exercise and update
-        $exercise = Exercise::find($input->id);
+        $exercise = Exercise::find($input['id']);
         $exercise->image = $filename;
         $exercise->save();
 
