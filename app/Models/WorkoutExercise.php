@@ -8,7 +8,7 @@ class WorkoutExercise extends Model {
     protected $table = 'exercise_workout';
 
     protected $fillable = [
-        'user_id', 'workout_id', 'exercise_id', 'reps', 'duration'
+        'user_id', 'workout_id', 'exercise_id', 'reps', 'duration', 'duration_type'
     ];
 
     public function taggable() {
