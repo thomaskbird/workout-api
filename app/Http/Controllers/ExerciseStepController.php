@@ -23,7 +23,7 @@ class ExerciseStepController extends Controller {
 
     public function exercise_step_remove($exercise_step_id) {
         $exercise_step = ExerciseStep::find($exercise_step_id);
-        $exercise_step->remove();
+        $exercise_step->delete();
 
         return response(json_encode([
             'status' => true,
