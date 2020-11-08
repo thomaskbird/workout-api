@@ -216,7 +216,7 @@ class AuthenticationController extends Controller {
             ]), 401);
         } else {
             $user = User::find($input['user_id'])->first();
-            if($user->password === $input['existingPassword']) {
+            if($user->password === Hash::make($input['existingPassword'])) {
                 if($input['password'] === $input['cpassword']) {
                     $user->password = Hash::make($input['password']);
                     $user->reset_token = '';
