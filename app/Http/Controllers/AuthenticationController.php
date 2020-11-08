@@ -219,12 +219,11 @@ class AuthenticationController extends Controller {
             return response(json_encode([
                 'status' => true,
                 'data' => [
-                    'existing_pass' => $user->password,
-                    'new_pass' => Hash::make('test')
+                    'matches' => Hash::check($input['existingPassword'], $user->password)
                 ]
             ]));
 
-            if($user->password === Hash::make($input['existingPassword'])) {
+            if(Hash::check($input['existingPassword'], $user->password)) {
                 if($input['password'] === $input['cpassword']) {
                     $user->password = Hash::make($input['password']);
                     $user->reset_token = '';
