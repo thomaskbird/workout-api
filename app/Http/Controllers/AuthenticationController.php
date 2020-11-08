@@ -204,7 +204,6 @@ class AuthenticationController extends Controller {
 
         $validator = Validator::make($input, [
             'user_id' => 'required',
-            'reset_token' => 'required',
             'password' => 'required',
             'cpassword' => 'required',
             'existingPassword' => 'required',
@@ -216,10 +215,7 @@ class AuthenticationController extends Controller {
                 'errors' => $validator->errors()
             ]), 401);
         } else {
-            $reset_token = base64_decode($input['reset_token']);
-            $reset_code_parts = explode('||', $reset_token);
-
-            $user = User::where('email', $reset_code_parts[0])->first();
+            $user = User::find($input['user_id'])->first();
             if($user->password === $input['existingPassword']) {
                 if($input['password'] === $input['cpassword']) {
                     $user->password = Hash::make($input['password']);
