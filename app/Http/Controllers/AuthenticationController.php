@@ -216,12 +216,6 @@ class AuthenticationController extends Controller {
             ]), 401);
         } else {
             $user = User::find($input['user_id'])->first();
-            return response(json_encode([
-                'status' => true,
-                'data' => [
-                    'matches' => Hash::check($input['existingPassword'], $user->password)
-                ]
-            ]));
 
             if(Hash::check($input['existingPassword'], $user->password)) {
                 if($input['password'] === $input['cpassword']) {
