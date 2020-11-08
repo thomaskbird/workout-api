@@ -216,7 +216,14 @@ class AuthenticationController extends Controller {
             ]), 401);
         } else {
             $user = User::find($input['user_id'])->first();
-            echo $user->password .'-'. Hash::make($input['existingPassword']); exit;
+            return response(json_encode([
+                'status' => true,
+                'data' => [
+                    'existing_pass' => $user->password,
+                    'new_pass' => Hash::make($input['existingPassword'])
+                ]
+            ]));
+
             if($user->password === Hash::make($input['existingPassword'])) {
                 if($input['password'] === $input['cpassword']) {
                     $user->password = Hash::make($input['password']);
