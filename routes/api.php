@@ -32,7 +32,7 @@ route::post('login', [AuthenticationController::class, 'action_login']);
 //route::post('signup', [AuthenticationController::class, 'action_signup']);
 //route::post('activate/{activation_code}', [AuthenticationController::class, 'account_user_activate']);
 //route::post('forgot-password', [AuthenticationController::class, 'action_forgot_password']);
-//route::post('reset-password/{reset_token}', [AuthenticationController::class, 'action_reset_password']);
+route::post('reset-password', [AuthenticationController::class, 'action_reset_password']);
 
 route::middleware(['apiToken'])->group(function() {
     route::post('exercise/add', [ExerciseController::class, 'exercise_add']);

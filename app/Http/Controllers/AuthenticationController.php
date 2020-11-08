@@ -199,11 +199,15 @@ class AuthenticationController extends Controller {
         }
     }
 
-    public function action_reset_password(Request $request, $reset_token) {
+    public function action_reset_password(Request $request) {
         $input = $request->except('_token');
 
         $validator = Validator::make($input, [
-            'password' => 'required'
+            'user_id' => 'required',
+            'reset_token' => 'required',
+            'password' => 'required',
+            'cpassword' => 'required',
+            'existingPassword' => 'required',
         ]);
 
         if($validator->fails()) {
@@ -212,18 +216,34 @@ class AuthenticationController extends Controller {
                 'errors' => $validator->errors()
             ]), 401);
         } else {
-            $reset_token = base64_decode($reset_token);
+            $reset_token = base64_decode($input['reset_token']);
             $reset_code_parts = explode('||', $reset_token);
 
             $user = User::where('email', $reset_code_parts[0])->first();
-            $user->password = Hash::make($input['password']);
-            $user->reset_token = '';
-            $user->save();
+            if($user->password === $input['existingPassword']) {
+                if($input['password'] === $input['cpassword']) {
+                    $user->password = Hash::make($input['password']);
+                    $user->reset_token = '';
+                    $user->save();
 
-            return response(json_encode([
-                'status' => true,
-                'errors' => ['Your password has been reset you can now login.']
-            ]));
+                    return response(json_encode([
+                        'status' => true,
+                        'data' => [
+                            'user' => $user
+                        ]
+                    ]));
+                } else {
+                    return response(json_encode([
+                        'status' => false,
+                        'errors' => ['Your password did not match']
+                    ]), 401);
+                }
+            } else {
+                return response(json_encode([
+                    'status' => false,
+                    'errors' => ['Your existing password does not match our records']
+                ]), 401);
+            }
         }
     }
 
