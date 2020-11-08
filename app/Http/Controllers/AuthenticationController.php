@@ -220,7 +220,7 @@ class AuthenticationController extends Controller {
                 'status' => true,
                 'data' => [
                     'existing_pass' => $user->password,
-                    'new_pass' => Hash::make($input['existingPassword'])
+                    'new_pass' => Hash::make('test')
                 ]
             ]));
 
